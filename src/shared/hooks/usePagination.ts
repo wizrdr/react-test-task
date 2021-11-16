@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { DOTS } from "../constants";
 import { range } from "../utils";
 
 interface PaginationProps {
@@ -7,8 +8,6 @@ interface PaginationProps {
   currentPage: number;
   siblingCount?: number;
 }
-
-export const DOTS = "...";
 
 export const usePagination = ({
   totalCount,

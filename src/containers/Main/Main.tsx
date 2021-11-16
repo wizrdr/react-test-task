@@ -6,6 +6,7 @@ import { IMovie, IMovieResponse } from "../../shared/types";
 import "./Main.scss";
 
 const PageSize = 21;
+const APICallsAmount = 25
 
 export const Main = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
@@ -14,27 +15,24 @@ export const Main = () => {
   useEffect(() => {
     let i = 1;
     const promiseArr = [];
-    while (i <= 25) {
+    while (i <= APICallsAmount) {
       promiseArr.push(apiService.movies.getPopularMovie(i));
       i++;
     }
     Promise.all(promiseArr).then((resp) => {
       const movies = resp.map((item) => {
-        const normalizedMovies = item.data.results.map(
-          (item: IMovieResponse) => {
-            const isHighlighted = localStorage.getItem(item.id.toString());
-            const date = new Date(item.release_date);
-            return {
-              id: item.id,
-              imagePath: item.poster_path,
-              title: item.title,
-              currentRating: item.vote_average,
-              year: date.toLocaleDateString(),
-              isHighlighted: !!isHighlighted,
-            };
-          }
-        );
-        return normalizedMovies;
+        return item.data.results.map((item: IMovieResponse) => {
+          const isHighlighted = localStorage.getItem(item.id.toString());
+          const date = new Date(item.release_date);
+          return {
+            id: item.id,
+            imagePath: item.poster_path,
+            title: item.title,
+            currentRating: item.vote_average,
+            year: date.toLocaleDateString(),
+            isHighlighted: !!isHighlighted,
+          };
+        });
       });
       setMovies(movies.flat());
     });

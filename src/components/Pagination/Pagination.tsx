@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { DOTS, usePagination } from "../../shared/hooks/usePagination";
+import { DOTS } from "../../shared/constants";
+import { usePagination } from "../../shared/hooks/usePagination";
 import "./Pagination.scss";
 
 interface PaginationProps {
