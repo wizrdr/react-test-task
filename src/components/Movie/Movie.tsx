@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { IMAGE_BASE_SIZE, IMAGE_BASE_URL } from "../../config";
 import { IMovie } from "../../shared/types";
-import star from "../../assets/star.svg";
+import { ReactComponent as Star } from "../../assets/star.svg";
 import "./Movie.scss";
 
 interface MovieProps {
@@ -15,7 +15,7 @@ export const Movie: FC<MovieProps> = ({ movie, toggleHighlight }) => {
   };
 
   return (
-    <div className={`Movie ${movie.isHighlighted ? "Highlighted" : ""}`}>
+    <div className="Movie">
       <div className="Poster">
         <img
           src={`${IMAGE_BASE_URL}${IMAGE_BASE_SIZE}${movie.imagePath}`}
@@ -35,7 +35,7 @@ export const Movie: FC<MovieProps> = ({ movie, toggleHighlight }) => {
       <p className="Rating">Rating: {movie.currentRating}</p>
       <p className="Year">{movie.year}</p>
       <button className="HighlightButton" onClick={handleClick}>
-        <img src={star} alt="highlight" />
+        <Star className={movie.isHighlighted ? "Highlighted" : ""} />
       </button>
     </div>
   );
