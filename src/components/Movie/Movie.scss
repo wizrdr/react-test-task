@@ -1,0 +1,56 @@
+.Movie {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  width: 220px;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+
+  .Poster {
+    width: 220px;
+    height: 330px;
+
+    img {
+      border-radius: 5px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .Title {
+    max-width: 220px;
+    margin: 0;
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: bold;
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+
+  .Rating {
+    margin-bottom: 5px;
+  }
+}
+
+.HighlightButton {
+  background-color: transparent;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.Highlighted {
+  background-color: #ffb7b7;
+}
